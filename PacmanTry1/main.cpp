@@ -18,10 +18,10 @@ static void SpawnPoints(int number)
     int tempX;
     srand(time(NULL));
     for (int c = 0; c<=number-1; c++) {
-        tempY = rand() % 23 + 1;
-        tempX = rand() % 79 + 1;
-
+        tempY = rand() % 23 + 2;
+        tempX = rand() % 79 + 2;
         mvprintw(tempY, tempX, ".");
+    
     }
 }
 
@@ -131,7 +131,7 @@ int main(int argc, const char * argv[]) {
     int PacmanXold = 15;
     int PacmanYnew = 15;
     int PacmanYold = 15;
-    int pointsleft = 10;
+    int pointsleft = 5;
     string UserInput;
     // print boundaries
     Boundaries();
