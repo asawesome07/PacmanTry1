@@ -18,8 +18,8 @@ static void SpawnPoints(int number)
     int tempX;
     srand(time(NULL));
     for (int c = 0; c<=number-1; c++) {
-        tempY = rand() % 23;
-        tempX = rand() % 79;
+        tempY = rand() % 23 + 1;
+        tempX = rand() % 79 + 1;
 
         mvprintw(tempY, tempX, ".");
     }
@@ -130,13 +130,13 @@ int main(int argc, const char * argv[]) {
     int PacmanXold = 15;
     int PacmanYnew = 15;
     int PacmanYold = 15;
-    int pointsleft = 5;
+    int pointsleft = 10;
     string UserInput;
     // print boundaries
     Boundaries();
 
     // spawn points
-    SpawnPoints(5);
+    SpawnPoints(pointsleft);
 
     // print pacman on the screen for the first time
     mvprintw(PacmanYold, PacmanXold, "C");
