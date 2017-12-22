@@ -120,7 +120,7 @@ static void InputHandler(int &PacmanXnew, int &PacmanXold, int &PacmanYnew, int 
 
 int main(int argc, const char * argv[]) {
     
-    //fdf
+
     //Added to git
     // initialize the screen
     initscr();
