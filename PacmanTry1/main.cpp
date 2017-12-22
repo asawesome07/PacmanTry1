@@ -27,7 +27,7 @@ static void SpawnPoints(int number)
 
 int main(int argc, const char * argv[]) {
 
-
+    //Added to git?
     // initialize the screen
     initscr();
     // set cursor off
