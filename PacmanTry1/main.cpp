@@ -25,21 +25,7 @@ static void SpawnPoints(int number)
     }
 }
 
-int main(int argc, const char * argv[]) {
-
-    //Added to git?
-    // initialize the screen
-    initscr();
-    // set cursor off
-    curs_set(0);
-    // variable initialization
-    int PacmanXnew;
-    int PacmanXold = 15;
-    int PacmanYnew;
-    int PacmanYold = 15;
-    int pointsleft = 5;
-    string UserInput;
-    // print boundaries
+static void Boundaries() {
     for (int a = 0; a<=79; a++) {
         mvprintw(0, a, "#");
         mvprintw(23, a, "#");
@@ -48,32 +34,25 @@ int main(int argc, const char * argv[]) {
         mvprintw(b, 0, "#");
         mvprintw(b, 79, "#");
     }
+}
 
-    // spawn points
-    SpawnPoints(5);
-
-    // print pacman on the screen for the first time
-    mvprintw(PacmanYold, PacmanXold, "C");
-
-    refresh();
-    PacmanXnew = PacmanXold;
-    PacmanYnew = PacmanYold;
+static void InputHandler(int &PacmanXnew, int &PacmanXold, int &PacmanYnew, int &PacmanYold, string &UserInput, int &pointsleft) {
     while (pointsleft != 0) {
-      UserInput = getchar();
+        UserInput = getchar();
         if (UserInput == "w") {
             if (mvinch(PacmanYold-1, PacmanXold) == '#') {
-               // do nothing and just move on
+                // do nothing and just move on
             }
             else
             {
                 if (mvinch(PacmanYold-1, PacmanXold) == '.') {
                     pointsleft--;
                 }
-            PacmanYnew = PacmanYold - 1;
-            mvprintw(PacmanYold, PacmanXold, " ");
-            mvprintw(PacmanYnew, PacmanXold, "C");
-            refresh();
-            PacmanYold = PacmanYnew;
+                PacmanYnew = PacmanYold - 1;
+                mvprintw(PacmanYold, PacmanXold, " ");
+                mvprintw(PacmanYnew, PacmanXold, "C");
+                refresh();
+                PacmanYold = PacmanYnew;
             }
         }
         if (UserInput == "s") {
@@ -85,11 +64,11 @@ int main(int argc, const char * argv[]) {
                 if (mvinch(PacmanYold+1, PacmanXold) == '.') {
                     pointsleft--;
                 }
-            PacmanYnew = PacmanYold + 1;
-            mvprintw(PacmanYold, PacmanXold, " ");
-            mvprintw(PacmanYnew, PacmanXold, "C");
-            refresh();
-            PacmanYold = PacmanYnew;
+                PacmanYnew = PacmanYold + 1;
+                mvprintw(PacmanYold, PacmanXold, " ");
+                mvprintw(PacmanYnew, PacmanXold, "C");
+                refresh();
+                PacmanYold = PacmanYnew;
             }
         }
         if (UserInput == "d") {
@@ -101,17 +80,17 @@ int main(int argc, const char * argv[]) {
                 if (mvinch(PacmanYold, PacmanXold+1) == '.') {
                     pointsleft--;
                 }
-            PacmanXnew = PacmanXold + 1;
-            mvprintw(PacmanYold, PacmanXold, " ");
-            mvprintw(PacmanYnew, PacmanXnew, "C");
-            refresh();
-            PacmanXold = PacmanXnew;
+                PacmanXnew = PacmanXold + 1;
+                mvprintw(PacmanYold, PacmanXold, " ");
+                mvprintw(PacmanYnew, PacmanXnew, "C");
+                refresh();
+                PacmanXold = PacmanXnew;
             }
             refresh();
         }
         if (UserInput == "a") {
             if (mvinch(PacmanYold, PacmanXold-1) == '#') {
-              // do nothing and just move on
+                // do nothing and just move on
             }
             else
             {
@@ -124,19 +103,48 @@ int main(int argc, const char * argv[]) {
                 refresh();
                 PacmanXold = PacmanXnew;
             }
-
-
-
+            
+            
+            
         }
-
-
-
+        
+        
+        
     }
-
+    
     if (pointsleft == 0) {
         mvprintw(PacmanYold, PacmanXold, " ");
         mvprintw(1, 38, "YOU WIN!");
     }
+}
+
+int main(int argc, const char * argv[]) {
+
+    //Added to git
+    // initialize the screen
+    initscr();
+    // set cursor off
+    curs_set(0);
+    // variable initialization
+    int PacmanXnew = 15;
+    int PacmanXold = 15;
+    int PacmanYnew = 15;
+    int PacmanYold = 15;
+    int pointsleft = 5;
+    string UserInput;
+    // print boundaries
+    Boundaries();
+
+    // spawn points
+    SpawnPoints(5);
+
+    // print pacman on the screen for the first time
+    mvprintw(PacmanYold, PacmanXold, "C");
+
+    refresh();
+    
+    
+    InputHandler(PacmanXnew, PacmanXold, PacmanYnew, PacmanYold, UserInput, pointsleft);
 
     getch();
 
